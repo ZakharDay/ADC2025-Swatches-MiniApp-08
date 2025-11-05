@@ -64,6 +64,15 @@ module.exports = {
       chunks: ['index']
     }),
 
+    // Preview page
+    new HtmlWebpackPlugin({
+      hash: true,
+      scriptLoading: 'blocking',
+      template: './src/preview.html',
+      filename: './preview.html',
+      chunks: ['index']
+    }),
+
     // Partials
     new HtmlWebpackPartialsPlugin([
       {

@@ -7,16 +7,21 @@
   </head>
 
   <body class="index">
-    <div class="images">
-      <div class="image" id="bgPNG"></div>
-      <div class="image" id="bgJPG"></div>
-      <div class="image" id="bgSVG"></div>
-      <img src="images/image.png" />
-      <img src="images/image.jpg" />
-      <img src="images/image.svg" />
-    </div>
+    <h1>Наше супер приложение</h1>
+    <p>Здесь будет вовлекающий текст для миниаппа</p>
 
-    <div>This is a landing page</div>
-    <a href="./pages/page.html">Go to an internal page</a>
+    <form
+      action="http://localhost:3000/api/v1/subscriptions.json"
+      accept-charset="UTF-8"
+    >
+      <input type="email" name="subscription[email]" id="subscription_email" />
+
+      <input
+        type="submit"
+        name="commit"
+        value="Create Subscription"
+        data-disable-with="Create Subscription"
+      />
+    </form>
   </body>
 </html>
