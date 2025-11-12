@@ -73,6 +73,15 @@ module.exports = {
       chunks: ['index']
     }),
 
+    // Swatch page
+    new HtmlWebpackPlugin({
+      hash: true,
+      scriptLoading: 'blocking',
+      template: './src/swatch.html',
+      filename: './swatch.html',
+      chunks: ['index']
+    }),
+
     // Partials
     new HtmlWebpackPartialsPlugin([
       {

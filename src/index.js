@@ -62,7 +62,14 @@ function initPreviewPage() {
 function createSwatchPreview(swatchData, container) {
   const swatch = document.createElement('div')
   const h2 = document.createElement('h2')
+  const link = document.createElement('a')
   const fills = document.createElement('div')
+
+  swatch.classList.add('swatch')
+  fills.classList.add('fills')
+
+  link.innerText = swatchData.name
+  link.href = `${container.dataset.swatchUri}?swatch=${swatchData.id}`
 
   swatchData.fills.forEach((fillData) => {
     const fill = document.createElement('div')
@@ -71,9 +78,15 @@ function createSwatchPreview(swatchData, container) {
     const hex = document.createElement('div')
     const name = document.createElement('div')
 
-    color.innerText = 'здесь будет цвет'
+    fill.classList.add('fillCard')
+    color.classList.add('fillColor')
+    info.classList.add('fillCardInfo')
+    name.classList.add('fillName')
+
     hex.innerText = `Colors: ${fillData.colors.length}`
     name.innerText = `Variable: ${fillData.name}`
+
+    setCssBackgroundValue(color, fillData)
 
     fill.appendChild(color)
     fill.appendChild(info)
@@ -82,17 +95,55 @@ function createSwatchPreview(swatchData, container) {
     fills.appendChild(fill)
   })
 
-  h2.innerText = swatchData.name
-
+  h2.appendChild(link)
   swatch.appendChild(h2)
   swatch.appendChild(fills)
   container.appendChild(swatch)
 }
 
+function setCssBackgroundValue(element, fill) {
+  let cssColor
+
+  if (fill.colors.length > 1) {
+    const colors = []
+
+    fill.colors.forEach((color) => {
+      colors.push(`#${color.color} ${color.stop}%`)
+    })
+
+    const cssColors = colors.join(', ')
+    cssColor = 'linear-gradient(90deg, ' + cssColors + ')'
+
+    element.style.backgroundImage = cssColor
+  } else if (fill.colors.length == 1) {
+    cssColor = '#' + fill.colors[0].color
+    element.style.backgroundColor = cssColor
+  }
+}
+
+function initSwatchPage() {
+  const searchParams = new URLSearchParams(window.location.search)
+  const id = searchParams.get('swatch')
+  const url = document.body.dataset.url
+
+  fetch(url + id)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      createSwatchPreview(data, document.body)
+    })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if (document.body.classList.contains('index')) {
     initSubscriptionForm()
-  } else if (document.body.classList.contains('preview')) {
+  }
+
+  if (document.body.classList.contains('preview')) {
     initPreviewPage()
+  }
+
+  if (document.body.classList.contains('swatch')) {
+    initSwatchPage()
   }
 })
