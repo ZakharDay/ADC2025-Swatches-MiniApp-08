@@ -8,4 +8,10 @@ body.index {
   & > a {
     margin: 10px 0;
   }
+
+  form {
+    &.hidden {
+      display: none;
+    }
+  }
 }
