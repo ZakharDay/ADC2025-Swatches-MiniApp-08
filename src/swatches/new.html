@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>static-site-boilerplate index</title>
+    <analytics></analytics>
+  </head>
+
+  <body class="swatches new">
+    <nav class="menubar">
+      <a href="../index.html">Главная</a>
+      <a href="index.html">Палитры</a>
+    </nav>
+
+    <user_forms></user_forms>
+
+    <h1>Новая палитра</h1>
+
+    <section
+      class="newSwatchForm"
+      data-get-fills-url="http://localhost:3000/api/v1/fills.json"
+      data-create-swatch-url="http://localhost:3000/api/v1/swatches.json"
+    ></section>
+  </body>
+</html>

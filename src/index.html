@@ -6,7 +6,12 @@
     <analytics></analytics>
   </head>
 
-  <body class="index">
+  <body class="home index">
+    <nav class="menubar">
+      <span>Главная</span>
+      <a href="/swatches/index.html">Палитры</a>
+    </nav>
+
     <h1>Наше супер приложение</h1>
     <p>Здесь будет вовлекающий текст для миниаппа</p>
 
@@ -27,38 +32,6 @@
 
     <br /><br />
 
-    <form
-      action="http://localhost:3000/api/v1/sign_in.json"
-      accept-charset="UTF-8"
-      class="hidden"
-      id="loginForm"
-    >
-      <div>
-        <input
-          type="email"
-          name="user[email]"
-          id="user_email"
-          placeholder="Ваш имейл"
-        />
-      </div>
-
-      <div>
-        <input
-          type="password"
-          name="user[password]"
-          id="user_password"
-          placeholder="Ваш пароль"
-        />
-      </div>
-
-      <div>
-        <input
-          type="submit"
-          name="commit"
-          value="Войти"
-          data-disable-with="Войти"
-        />
-      </div>
-    </form>
+    <user_forms></user_forms>
   </body>
 </html>

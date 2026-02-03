@@ -55,7 +55,6 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin(),
 
-    // Landing page
     new HtmlWebpackPlugin({
       hash: true,
       scriptLoading: 'blocking',
@@ -64,25 +63,40 @@ module.exports = {
       chunks: ['index']
     }),
 
-    // Preview page
     new HtmlWebpackPlugin({
       hash: true,
       scriptLoading: 'blocking',
-      template: './src/preview.html',
-      filename: './preview.html',
+      template: './src/swatches/index.html',
+      filename: './swatches/index.html',
       chunks: ['index']
     }),
 
-    // Swatch page
     new HtmlWebpackPlugin({
       hash: true,
       scriptLoading: 'blocking',
-      template: './src/swatch.html',
-      filename: './swatch.html',
+      template: './src/swatches/show.html',
+      filename: './swatches/show.html',
+      chunks: ['index']
+    }),
+
+    new HtmlWebpackPlugin({
+      hash: true,
+      scriptLoading: 'blocking',
+      template: './src/swatches/new.html',
+      filename: './swatches/new.html',
       chunks: ['index']
     }),
 
     // Partials
+    new HtmlWebpackPartialsPlugin([
+      {
+        path: path.join(__dirname, './src/partials/user_forms.html'),
+        location: 'user_forms',
+        template_filename: '*',
+        priority: 'replace'
+      }
+    ]),
+
     new HtmlWebpackPartialsPlugin([
       {
         path: path.join(__dirname, './src/partials/analytics.html'),
